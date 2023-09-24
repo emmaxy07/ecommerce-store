@@ -1,0 +1,67 @@
+/* Login.css */
+.login {
+    background-color: #3c8dbc;
+    height: 100vh; /* Set the height to fill the entire viewport vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-form {
+    border: none;
+    width: 50%;
+    max-width: 400px; /* Set a maximum width for the form */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-form h5 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .login-form div {
+    margin-bottom: 15px;
+  }
+  
+  .login-form label {
+    margin-left: 5px;
+  }
+  
+  .login-form input {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .login-form p {
+    color: red;
+    margin-top: 5px;
+  }
+  
+  .login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #3c8dbc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-form button:hover {
+    background-color: #3080b0;
+  }
+  
+  /* Center the checkbox and label */
+  .login-form input[type="checkbox"] {
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+

@@ -1,0 +1,57 @@
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 2rem;
+}
+
+.cart-container {
+	position: relative;
+}
+
+.cart-container p {
+	position: absolute;
+	background-color: teal;
+	color: white;
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: -10px;
+	right: -18px;
+	font-size: 14px;
+}
+
+.categories {
+	cursor: pointer;
+	position: relative;
+}
+
+.categories-dropdown {
+	position: absolute;
+	top: 100%; /* Position the dropdown below the "Categories" heading */
+	background-color: #fff;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+	padding: 0.2rem;
+	width: 100px;
+	z-index: 1; /* Make sure the dropdown is above other elements */
+  }
+  
+  .categories-dropdown a {
+	display: block;
+	text-decoration: none;
+	color: #333;
+  }
+  
+  .categories-dropdown a:hover {
+	background-color: #f5f5f5;
+  }
+
+  .initials{
+	display: flex;
+	gap: 8px;
+  }
+
+

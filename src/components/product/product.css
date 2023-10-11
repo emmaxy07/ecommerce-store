@@ -16,10 +16,9 @@
 	text-overflow: ellipsis;
   }
   
-  .product p.multiline {
-	/* Add this style for the product title with multiple lines */
+  /* .product p.multiline {
 	white-space: normal;
-  }
+  } */
 
 .product img {
 	width: 200px;

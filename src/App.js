@@ -10,25 +10,33 @@ import WomensClothing from "./components/Categories/WomensClothing/WomensClothin
 import Electronics from './components/Categories/Electronics/Electronics';
 import Jewelry from './components/Categories/Jewelry/Jewelry';
 import Login from './components/Login/Login';
+import { AppProvider } from './AppProviderContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLogin } from './components/Login-v1/loginSlice';
+
 
 const getTokenFromLocalStorage = () => {
   return localStorage.getItem('token');
 };
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [products, setProducts] =useState([]);
   const [cartItems, setCartItems] =useState([]);
 	const [showCart, setShowCart] = useState(false);
   const [username, setUsername] = useState("");
 
+  const dispatch = useDispatch();
+  const {
+    isLoggedIn
+  } = useSelector(store => store.shoppingCart);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     const token = getTokenFromLocalStorage();
     if (token){
-      setIsLoggedIn(true);
+      // setIsLoggedIn(true);
+      dispatch(setLogin());
     }
     fetchProducts();
   }, []);
@@ -41,7 +49,6 @@ const App = () => {
 
   const updateCart = (product) => {
     const exist = cartItems.find((x) => x.id === product.id)
-    console.log(cartItems, product, exist)
 		if(exist) {
 			setCartItems(cartItems.map((x) => x.id ===product.id ? {...exist, qty: exist.qty + 1} : x))
 		} else {
@@ -65,7 +72,8 @@ const App = () => {
   const viewCart = () => cartItems;
 
   const login = () =>{
-    setIsLoggedIn(true);
+    // setIsLoggedIn(true);
+    dispatch(setLogin());
     navigate("/products");
   }
 
@@ -77,6 +85,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <AppProvider>
       <Routes>
         <Route path='/' element={<Login login={login} username={username} setUsername={setUsername} />} />
        {isLoggedIn && <Route
@@ -93,7 +102,7 @@ const App = () => {
       <Route
       path='/cart'
       element={
-        <CartPage cartItems={cartItems} updatecart={updateCart} onRemove={onRemove} />
+        <CartPage showCart={showCart} cartItems={cartItems} updatecart={updateCart} onRemove={onRemove} />
       }
       />
       <Route path="/category/Men's Clothing" element={<MensClothing updatecart={updateCart} cartItems={cartItems} />} />
@@ -101,6 +110,7 @@ const App = () => {
       <Route path="/category/Electronics" element={<Electronics updatecart={updateCart} cartItems={cartItems} />} />
       <Route path="/category/Jewelry" element={<Jewelry updatecart={updateCart} cartItems={cartItems} />} />
       </Routes>
+      </AppProvider>
     </div>
   )
 };

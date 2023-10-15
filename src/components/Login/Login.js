@@ -5,10 +5,6 @@ const setTokenInLocalStorage = (token) => {
   localStorage.setItem('token', token);
 }
 
-const getTokenFromLocalStorage = (token) => {
-  localStorage.getItem('token')
-}
-
 const Login = ({ login, username, setUsername }) =>{
     const [password, setPassword] = useState("");
     const [usernamecheck, setUsernamecheck] = useState("");
@@ -17,7 +13,7 @@ const Login = ({ login, username, setUsername }) =>{
     const handleLogin = (e) => {
         e.preventDefault();
       
-        const hasSpecialCharacters = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+        // const hasSpecialCharacters = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
         if (username.length < 3) {
           setUsernamecheck("Username must be longer than 3 characters");
         } else {
@@ -42,7 +38,6 @@ const Login = ({ login, username, setUsername }) =>{
               })
               .then(res => res.json())
               .then(data => {
-                console.log(data);
                 const token = data.token;
                 setTokenInLocalStorage(token);
                 login();

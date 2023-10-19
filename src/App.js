@@ -12,7 +12,7 @@ import Jewelry from './components/Categories/Jewelry/Jewelry';
 import Login from './components/Login/Login';
 import { AppProvider } from './AppProviderContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLogin } from './components/Login-v1/loginSlice';
+import { setLogin } from './components/ShoppingCart/shoppingCartSlice';
 
 
 const getTokenFromLocalStorage = () => {
@@ -21,14 +21,15 @@ const getTokenFromLocalStorage = () => {
 
 const App = () => {
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [products, setProducts] =useState([]);
+  // const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] =useState([]);
 	const [showCart, setShowCart] = useState(false);
   const [username, setUsername] = useState("");
 
   const dispatch = useDispatch();
   const {
-    isLoggedIn
+    isLoggedIn,
+    products
   } = useSelector(store => store.shoppingCart);
   const navigate = useNavigate();
 
@@ -38,14 +39,17 @@ const App = () => {
       // setIsLoggedIn(true);
       dispatch(setLogin());
     }
-    fetchProducts();
-  }, []);
+    // fetchProducts();
+  }, [dispatch]);
 
-  function fetchProducts() {
-    fetch('https://fakestoreapi.com/products')
-      .then(res => res.json())
-      .then(productsData => setProducts(productsData));
-  }
+  // function fetchProducts() {
+  //   fetch('https://fakestoreapi.com/products')
+  //     .then(res => res.json())
+  //     .then(productsData => {
+  //       console.log(productsData);
+  //       setProducts(productsData)
+  //     });
+  // }
 
   const updateCart = (product) => {
     const exist = cartItems.find((x) => x.id === product.id)

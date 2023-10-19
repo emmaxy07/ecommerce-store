@@ -1,13 +1,21 @@
 import './navbar.css';
-import { useState } from 'react';
+// import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { showCategories } from '../ShoppingCart/shoppingCartSlice';
 
 
 function Navbar ({noOfItemsIncart, showCart, setShowCart, firstCharAfterSpace, }) {
-	const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
+	// const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
+
+	const dispatch = useDispatch();
+	const {
+		showCategoriesDropdown
+	} = useSelector(store => store.shoppingCart);
 
 	const toggleCategoriesDropdown = () => {
-		setShowCategoriesDropdown(!showCategoriesDropdown);
+		// setShowCategoriesDropdown(!showCategoriesDropdown);
+		dispatch(showCategories());
 	  };
 	
 	const toggleCartDisplay = () => setShowCart(!showCart)

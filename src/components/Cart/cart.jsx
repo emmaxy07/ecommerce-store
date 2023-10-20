@@ -1,6 +1,15 @@
-import './cart.css'
+import { useDispatch, useSelector } from 'react-redux';
+import './cart.css';
+import { updateCart, onRemove } from '../ShoppingCart/shoppingCartSlice';
 
-const Cart = ({showCart, cartItems, onRemove, updatecart}) =>{
+const Cart = ({showCart}) =>{
+
+  const dispatch = useDispatch();
+  const {
+    cartItems
+  } = useSelector(store => store.shoppingCart);
+  console.log(cartItems);
+
     const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
     const taxPrice = itemsPrice * 0.14;
     const shippingPrice = itemsPrice > 2000 ? 0 : 20;
@@ -12,12 +21,12 @@ const Cart = ({showCart, cartItems, onRemove, updatecart}) =>{
             <img src={item.image} alt='' width="100px" height="100px" />
             <div className="col-2">{item.title}</div>
             <div className="col-2">
-              <button onClick={() => onRemove(item)} className="remove">
+              <button onClick={() => dispatch (onRemove(item))} className="remove">
                 -
               </button>{' '}
-              <button onClick={() => updatecart(item)} className="add">
+              <button onClick={() => dispatch (updateCart(item))} className="add">
                 +
-              </button>
+              </button> 
             </div>
             <div className="col-2 text-right">
               {item.qty} x ${item.price.toFixed(2)}

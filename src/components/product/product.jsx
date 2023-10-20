@@ -1,9 +1,19 @@
 import { useState } from 'react';
 import './product.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCart } from '../ShoppingCart/shoppingCartSlice';
+
 
 
 function Product ({product, updatecart}) {
+	// console.log(product);
 	const [isHovered, setIsHovered] = useState(false);
+
+	const dispatch = useDispatch();
+  const {
+    cartItems,
+	products,
+  } = useSelector(store => store.shoppingCart);
 	const btnStyle = {
 		cursor: "pointer"
 	}
@@ -25,7 +35,7 @@ function Product ({product, updatecart}) {
         {isHovered ? product.title : truncateTitle(product.title)}
       </p>
 						<p>${product.price}</p>
-						<button style={btnStyle} onClick={()=>updatecart(product)}>Add to Cart</button>
+						<button style={btnStyle} onClick={()=>dispatch (updateCart(product))}>Add to Cart</button>
 		</div>
 	)
 }

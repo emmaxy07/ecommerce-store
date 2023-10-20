@@ -1,9 +1,9 @@
 import Cart from "./cart";
 
-const CartPage = ({ cartItems, onRemove, updatecart}) =>{
+const CartPage = () =>{
     return (
         <div>
-           <Cart showCart={true} updatecart={updatecart} onRemove={onRemove} cartItems={cartItems} />
+           <Cart showCart={true} />
         </div>
     )
 }

@@ -29,7 +29,7 @@ const App = () => {
   const dispatch = useDispatch();
   const {
     isLoggedIn,
-    products
+    products,
   } = useSelector(store => store.shoppingCart);
   const navigate = useNavigate();
 
@@ -60,18 +60,18 @@ const App = () => {
 		}
   }
 
-  const onRemove = (product) => {
-    const exist = cartItems.find((x) => x.id === product.id);
-    if (exist.qty === 1) {
-      setCartItems(cartItems.filter((x) => x.id !== product.id));
-    } else {
-      setCartItems(
-        cartItems.map((x) =>
-          x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
-        )
-      );
-    }
-  };
+  // const onRemove = (product) => {
+  //   const exist = cartItems.find((x) => x.id === product.id);
+  //   if (exist.qty === 1) {
+  //     setCartItems(cartItems.filter((x) => x.id !== product.id));
+  //   } else {
+  //     setCartItems(
+  //       cartItems.map((x) =>
+  //         x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
+  //       )
+  //     );
+  //   }
+  // };
 
   const viewCart = () => cartItems;
 
@@ -96,9 +96,9 @@ const App = () => {
         path='/products'
         element={
           <>
-        <Navbar noOfItemsIncart={cartItems.length} setShowCart={setShowCart} updatecart={updateCart} viewCart={viewCart} onRemove={onRemove} cartItems={cartItems} firstChar={firstChar}
+        <Navbar setShowCart={setShowCart} viewCart={viewCart} firstChar={firstChar}
                   firstCharAfterSpace={firstCharAfterSpace} />
-      <Cart showCart={showCart} cartItems={cartItems} onRemove={onRemove} updatecart={updateCart} />
+      <Cart showCart={showCart} />
       <ProductList products={products} setCartItems={updateCart} viewCart={viewCart} />
       </>
         }
@@ -106,7 +106,7 @@ const App = () => {
       <Route
       path='/cart'
       element={
-        <CartPage showCart={showCart} cartItems={cartItems} updatecart={updateCart} onRemove={onRemove} />
+        <CartPage />
       }
       />
       <Route path="/category/Men's Clothing" element={<MensClothing updatecart={updateCart} cartItems={cartItems} />} />

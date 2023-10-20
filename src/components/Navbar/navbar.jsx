@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom';
 import { showCategories } from '../ShoppingCart/shoppingCartSlice';
 
 
-function Navbar ({noOfItemsIncart, showCart, setShowCart, firstCharAfterSpace, }) {
+function Navbar ({ showCart, setShowCart, firstCharAfterSpace, }) {
 	// const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
 
 	const dispatch = useDispatch();
 	const {
-		showCategoriesDropdown
+		showCategoriesDropdown,
+		noOfItemsIncart
 	} = useSelector(store => store.shoppingCart);
 
 	const toggleCategoriesDropdown = () => {

@@ -5,7 +5,7 @@ import { updateCart } from '../ShoppingCart/shoppingCartSlice';
 
 
 
-function Product ({product, updatecart}) {
+function Product ({product}) {
 	// console.log(product);
 	const [isHovered, setIsHovered] = useState(false);
 

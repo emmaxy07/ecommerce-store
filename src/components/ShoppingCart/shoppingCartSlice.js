@@ -1,5 +1,6 @@
 const initialState = {
     isLoggedIn: false,
+    isLoading: false,
     showCategoriesDropdown: false,
     products: [],
     error: "",
@@ -14,6 +15,21 @@ export default function ShoppingCartReducer(state = initialState, action){
                 ...state,
                 isLoggedIn: true,
                 products: action.payload
+            }
+        case "getElectronics":
+            return {
+                ...state,
+                products: action.payload
+            }
+        case "startLoading":
+            return {
+                ...state,
+                isLoading: true
+            }
+        case "stopLoading":
+            return {
+                ...state,
+                isLoading: false
             }
         case "login-error":
             return {
@@ -96,5 +112,26 @@ export function onRemove(payload){
 export function showCategories(){
     return {
         type: "showCategories"
+    }
+}
+
+export function getElectronics(){
+    return async function(dispatch, getState){
+        try{
+        dispatch({type: "startLoading"});
+       const res = await fetch("https://fakestoreapi.com/products/category/electronics");
+       const data = await res.json();
+       dispatch({
+        type: "getElectronics", 
+        payload: data
+    })
+        } catch(err){
+            dispatch({
+                type: "login-error",
+                error: err.message
+            })
+        } finally {
+            dispatch({type: "stopLoading"});
+        }
     }
 }

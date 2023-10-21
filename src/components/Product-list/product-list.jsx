@@ -2,12 +2,12 @@ import Product from '../product/product';
 import './product-list.css';
 
 
-function ProductList ({products, setCartItems, viewCart}) {
+function ProductList ({products, viewCart}) {
 	return (
 		<div className="product-list">
 			{
 				products.map(product =>
-					<Product key={product.id} product={product} updatecart={setCartItems}/>
+					<Product key={product.id} product={product}/>
 				)
 			}
 

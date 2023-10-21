@@ -22,7 +22,7 @@ const getTokenFromLocalStorage = () => {
 const App = () => {
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const [products, setProducts] = useState([]);
-  const [cartItems, setCartItems] =useState([]);
+  // const [cartItems, setCartItems] =useState([]);
 	const [showCart, setShowCart] = useState(false);
   const [username, setUsername] = useState("");
 
@@ -30,6 +30,7 @@ const App = () => {
   const {
     isLoggedIn,
     products,
+    cartItems
   } = useSelector(store => store.shoppingCart);
   const navigate = useNavigate();
 
@@ -51,14 +52,14 @@ const App = () => {
   //     });
   // }
 
-  const updateCart = (product) => {
-    const exist = cartItems.find((x) => x.id === product.id)
-		if(exist) {
-			setCartItems(cartItems.map((x) => x.id ===product.id ? {...exist, qty: exist.qty + 1} : x))
-		} else {
-			setCartItems([...cartItems, {...product, qty: 1}])
-		}
-  }
+  // const updateCart = (product) => {
+  //   const exist = cartItems.find((x) => x.id === product.id)
+	// 	if(exist) {
+	// 		setCartItems(cartItems.map((x) => x.id ===product.id ? {...exist, qty: exist.qty + 1} : x))
+	// 	} else {
+	// 		setCartItems([...cartItems, {...product, qty: 1}])
+	// 	}
+  // }
 
   // const onRemove = (product) => {
   //   const exist = cartItems.find((x) => x.id === product.id);
@@ -99,7 +100,7 @@ const App = () => {
         <Navbar setShowCart={setShowCart} viewCart={viewCart} firstChar={firstChar}
                   firstCharAfterSpace={firstCharAfterSpace} />
       <Cart showCart={showCart} />
-      <ProductList products={products} setCartItems={updateCart} viewCart={viewCart} />
+      <ProductList products={products} viewCart={viewCart} />
       </>
         }
       />}

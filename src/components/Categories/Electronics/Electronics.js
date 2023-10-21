@@ -1,31 +1,36 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import './Electronics.css';
 import Navbar from "../../Navbar/navbar";
 import loader from "../../../assets/Spinner-1s-200px.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { updateCart } from "../../ShoppingCart/shoppingCartSlice";
+import { updateCart, getElectronics } from "../../ShoppingCart/shoppingCartSlice";
 
 
 const Electronics = () =>{
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [products, setProducts] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
-  const {cartItems} = useSelector(store => store.shoppingCart);
+  const {
+    cartItems,
+    products, 
+    isLoading
+  } = useSelector(store => store.shoppingCart);
 
-  function fetchProducts() {
-    setIsLoading(true);
-    fetch("https://fakestoreapi.com/products/category/electronics")
-      .then(res => res.json())
-      .then(productsData => {
-        setProducts(productsData);
-        setIsLoading(false);
-      });
-  }
+  // function fetchProducts() {
+  //   setIsLoading(true);
+  //   fetch("https://fakestoreapi.com/products/category/electronics")
+  //     .then(res => res.json())
+  //     .then(productsData => {
+  //       setProducts(productsData);
+  //       setIsLoading(false);
+  //     });
+  // }
 
   useEffect(()=>{
-    fetchProducts();
-  },[])
+    // fetchProducts();
+    dispatch(getElectronics())
+  },[dispatch])
 
   const btnStyle = {
     cursor: "pointer"

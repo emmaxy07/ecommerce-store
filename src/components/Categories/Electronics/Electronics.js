@@ -2,11 +2,16 @@ import { useEffect, useState } from "react";
 import './Electronics.css';
 import Navbar from "../../Navbar/navbar";
 import loader from "../../../assets/Spinner-1s-200px.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { updateCart } from "../../ShoppingCart/shoppingCartSlice";
 
 
-const Electronics = ({ updatecart, cartItems }) =>{
+const Electronics = () =>{
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  const {cartItems} = useSelector(store => store.shoppingCart);
 
   function fetchProducts() {
     setIsLoading(true);
@@ -35,7 +40,7 @@ const Electronics = ({ updatecart, cartItems }) =>{
                         <img src={product.image} alt="product.name" />
                         <p><b>{product.title}</b></p>
                                 <p>${product.price}</p>
-                    <button style={btnStyle} onClick={()=>updatecart(product)}>Add to Cart</button>
+                    <button style={btnStyle} onClick={()=> dispatch (updateCart(product))}>Add to Cart</button>
                                 </div>
             }) }
         </div>

@@ -109,10 +109,10 @@ const App = () => {
         <CartPage />
       }
       />
-      <Route path="/category/Men's Clothing" element={<MensClothing updatecart={updateCart} cartItems={cartItems} />} />
-      <Route path="/category/Women's Clothing" element={<WomensClothing updatecart={updateCart} cartItems={cartItems} />} />
-      <Route path="/category/Electronics" element={<Electronics updatecart={updateCart} cartItems={cartItems} />} />
-      <Route path="/category/Jewelry" element={<Jewelry updatecart={updateCart} cartItems={cartItems} />} />
+      <Route path="/category/Men's Clothing" element={<MensClothing  />} />
+      <Route path="/category/Women's Clothing" element={<WomensClothing />} />
+      <Route path="/category/Electronics" element={<Electronics />} />
+      <Route path="/category/Jewelry" element={<Jewelry />} />
       </Routes>
       </AppProvider>
     </div>

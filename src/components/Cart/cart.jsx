@@ -8,7 +8,6 @@ const Cart = ({showCart}) =>{
   const {
     cartItems
   } = useSelector(store => store.shoppingCart);
-  console.log(cartItems);
 
     const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
     const taxPrice = itemsPrice * 0.14;

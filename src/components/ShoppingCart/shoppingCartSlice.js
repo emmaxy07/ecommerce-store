@@ -21,6 +21,21 @@ export default function ShoppingCartReducer(state = initialState, action){
                 ...state,
                 products: action.payload
             }
+        case "getJewelries":
+            return {
+                ...state,
+                products: action.payload
+            }
+        case "getMensClothing": 
+        return {
+            ...state,
+            products: action.payload
+        }
+        case "getWomensClothing":
+            return {
+                ...state,
+                products: action.payload
+            }
         case "startLoading":
             return {
                 ...state,
@@ -95,7 +110,6 @@ export function setLogin(){
 }
 
 export function updateCart(payload){
-    console.log(payload);
     return {
         type: "updateCart",
         payload
@@ -123,6 +137,69 @@ export function getElectronics(){
        const data = await res.json();
        dispatch({
         type: "getElectronics", 
+        payload: data
+    })
+        } catch(err){
+            dispatch({
+                type: "login-error",
+                error: err.message
+            })
+        } finally {
+            dispatch({type: "stopLoading"});
+        }
+    }
+}
+
+export function getJewelries(){
+    return async function(dispatch, getState){
+        try{
+        dispatch({type: "startLoading"});
+       const res = await fetch("https://fakestoreapi.com/products/category/jewelery");
+       const data = await res.json();
+       dispatch({
+        type: "getJewelries", 
+        payload: data
+    })
+        } catch(err){
+            dispatch({
+                type: "login-error",
+                error: err.message
+            })
+        } finally {
+            dispatch({type: "stopLoading"});
+        }
+    }
+}
+
+export function getMensClothing(){
+    return async function(dispatch, getState){
+        try{
+        dispatch({type: "startLoading"});
+       const res = await fetch("https://fakestoreapi.com/products/category/men's clothing");
+       const data = await res.json();
+       dispatch({
+        type: "getMensClothing", 
+        payload: data
+    })
+        } catch(err){
+            dispatch({
+                type: "login-error",
+                error: err.message
+            })
+        } finally {
+            dispatch({type: "stopLoading"});
+        }
+    }
+}
+
+export function getWomensClothing(){
+    return async function(dispatch, getState){
+        try{
+        dispatch({type: "startLoading"});
+       const res = await fetch("https://fakestoreapi.com/products/category/women's clothing");
+       const data = await res.json();
+       dispatch({
+        type: "getWomensClothing", 
         payload: data
     })
         } catch(err){

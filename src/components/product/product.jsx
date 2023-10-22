@@ -1,19 +1,18 @@
 import { useState } from 'react';
 import './product.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { updateCart } from '../ShoppingCart/shoppingCartSlice';
 
 
 
 function Product ({product}) {
-	// console.log(product);
 	const [isHovered, setIsHovered] = useState(false);
 
 	const dispatch = useDispatch();
-  const {
-    cartItems,
-	products,
-  } = useSelector(store => store.shoppingCart);
+//   const {
+//     cartItems,
+// 	products,
+//   } = useSelector(store => store.shoppingCart);
 	const btnStyle = {
 		cursor: "pointer"
 	}

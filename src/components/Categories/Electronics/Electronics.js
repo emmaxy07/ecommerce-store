@@ -29,7 +29,7 @@ const Electronics = () =>{
 
   useEffect(()=>{
     // fetchProducts();
-    dispatch(getElectronics())
+    dispatch(getElectronics());
   },[dispatch])
 
   const btnStyle = {

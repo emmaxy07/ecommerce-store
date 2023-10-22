@@ -30,9 +30,7 @@ function Product ({product}) {
 	  console.log(productsToDisplay);
 
 	return (
-		<div className={`product ${isHovered ? 'hovered' : ''}`}
-		onMouseEnter={() => setIsHovered(true)}
-		onMouseLeave={() => setIsHovered(false)}>
+		<div className={`product`}>
 						{productsToDisplay.map((product) => {
 						return <div key={product.id}><img src={product.image} alt={product.title} />
 						<p className={isHovered ? 'multiline' : ''} title={product.title}>

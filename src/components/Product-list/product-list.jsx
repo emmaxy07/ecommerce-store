@@ -19,7 +19,7 @@ function ProductList() {
 	if (searchedProduct === "") {
 		dispatch(clearSearchResults());
 	} else {
-	const filteredProduct = products.filter((product) => {
+	const filteredProduct = [...products].filter((product) => {
 		return product.title.toLowerCase().includes(searchedProduct);
 	})
 	dispatch (setSearchResults(filteredProduct));

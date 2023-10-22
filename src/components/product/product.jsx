@@ -25,21 +25,19 @@ function Product ({product}) {
 		return title;
 	  };
 
-	  const productsToDisplay = searchResults.length > 0 ? searchResults : [product];
+	//   const productsToDisplay = searchResults.length > 0 ? searchResults : [product];
+	//   console.log({productsToDisplay});
 
-	  console.log(productsToDisplay);
 
 	return (
 		<div className={`product`}>
-						{productsToDisplay.map((product) => {
-						return <div key={product.id}><img src={product.image} alt={product.title} />
+						{ <div key={product.id}><img src={product.image} alt={product.title} />
 						<p className={isHovered ? 'multiline' : ''} title={product.title}>
         {isHovered ? product.title : truncateTitle(product.title)}
       </p>
 						<p>${product.price}</p>
 						<button style={btnStyle} onClick={()=>dispatch (updateCart(product))}>Add to Cart</button>
-						</div>})
-						}
+						</div>}
 		</div>
 	)
 }

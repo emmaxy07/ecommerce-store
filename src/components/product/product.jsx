@@ -29,7 +29,7 @@ function Product ({product}) {
 		<div className={`product ${isHovered ? 'hovered' : ''}`}
 		onMouseEnter={() => setIsHovered(true)}
 		onMouseLeave={() => setIsHovered(false)}>
-						{products.map((product) => {
+						{searchResults.map((product) => {
 						return <><img src={product.image} alt={product.title} />
 						<p className={isHovered ? 'multiline' : ''} title={product.title}>
         {isHovered ? product.title : truncateTitle(product.title)}

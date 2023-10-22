@@ -3,5 +3,13 @@
 	flex-wrap: wrap;
 	row-gap: 30px;
 	column-gap: 40px;
-	/* border: 1px solid red; */
+	margin-top: 20px;
 }
+
+.input {
+	width: 300px;
+	height: 30px;
+	border: 1px solid gray;
+	border-radius: 8px;
+	outline: none;
+  }

@@ -8,7 +8,7 @@ import { setSearchResults } from '../ShoppingCart/shoppingCartSlice';
 
 
 function Navbar ({ showCart, setShowCart, firstCharAfterSpace, }) {
-	const [searchProduct, setSearchProduct] = useState("");
+	// const [searchProduct, setSearchProduct] = useState("");
 	// const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
 
 	const dispatch = useDispatch();
@@ -72,7 +72,6 @@ function Navbar ({ showCart, setShowCart, firstCharAfterSpace, }) {
 			<div>
 		<span>{firstCharAfterSpace}</span>
       </div>
-	  <input className='input' placeholder='Search for product' type='text' value={searchProduct} onChange={(e)=>searchProducts(e)} />
 		</nav>
 	)
 }

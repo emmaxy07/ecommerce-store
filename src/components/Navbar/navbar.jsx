@@ -28,14 +28,6 @@ function Navbar ({ showCart, setShowCart, firstCharAfterSpace, }) {
 		cursor: "pointer"
 	}
 
-	const searchProducts = (e) => {
-		const searchedProduct = e.target.value;
-		const filteredProduct = products.filter((product) => {
-			return product.title.toLowerCase().includes(searchedProduct);
-		})
-		dispatch (setSearchResults(filteredProduct));
-	}
-
 	const categoriesList = [
 		"Men's Clothing",
 		"Women's Clothing",

@@ -4,7 +4,7 @@ import Product from '../product/product';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchResults, clearSearchResults } from '../ShoppingCart/shoppingCartSlice';
 
-function ProductList({ viewCart }) {
+function ProductList() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchProduct, setSearchProduct] = useState("");
 

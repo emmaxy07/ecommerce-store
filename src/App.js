@@ -100,7 +100,7 @@ const App = () => {
         <Navbar setShowCart={setShowCart} viewCart={viewCart} firstChar={firstChar}
                   firstCharAfterSpace={firstCharAfterSpace} />
       <Cart showCart={showCart} />
-      <ProductList products={products} viewCart={viewCart} />
+      <ProductList />
       </>
         }
       />}

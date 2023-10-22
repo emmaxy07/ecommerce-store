@@ -4,6 +4,7 @@ const initialState = {
     showCategoriesDropdown: false,
     products: [],
     error: "",
+    searchResults: [],
     cartItems: [],
     noOfItemsIncart: 0
 }
@@ -36,6 +37,16 @@ export default function ShoppingCartReducer(state = initialState, action){
                 ...state,
                 products: action.payload
             }
+        case 'setSearchResults':
+            return {
+                  ...state,
+                  searchResults: action.payload,
+            }
+        case 'clearSearchResults':
+            return {
+                  ...state,
+                  searchResults: [],
+            };
         case "startLoading":
             return {
                 ...state,
@@ -96,6 +107,7 @@ export function setLogin(){
         try{
        const res = await fetch('https://fakestoreapi.com/products');
        const data = await res.json();
+       console.log(data)
        dispatch({
         type: "login", 
         payload: data
@@ -212,3 +224,12 @@ export function getWomensClothing(){
         }
     }
 }
+
+export const setSearchResults = (results) => ({
+    type: 'setSearchResults',
+    payload: results,
+  });
+  
+  export const clearSearchResults = () => ({
+    type: 'clearSearchResults',
+  });

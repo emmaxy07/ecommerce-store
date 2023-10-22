@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './product.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateCart } from '../ShoppingCart/shoppingCartSlice';
 
 
@@ -9,10 +9,10 @@ function Product ({product}) {
 	const [isHovered, setIsHovered] = useState(false);
 
 	const dispatch = useDispatch();
-//   const {
-//     cartItems,
-// 	products,
-//   } = useSelector(store => store.shoppingCart);
+  const {
+	products,
+    searchResults
+  } = useSelector(store => store.shoppingCart);
 	const btnStyle = {
 		cursor: "pointer"
 	}
@@ -29,12 +29,14 @@ function Product ({product}) {
 		<div className={`product ${isHovered ? 'hovered' : ''}`}
 		onMouseEnter={() => setIsHovered(true)}
 		onMouseLeave={() => setIsHovered(false)}>
-						<img src={product.image} alt={product.title} />
+						{products.map((product) => {
+						return <><img src={product.image} alt={product.title} />
 						<p className={isHovered ? 'multiline' : ''} title={product.title}>
         {isHovered ? product.title : truncateTitle(product.title)}
       </p>
 						<p>${product.price}</p>
 						<button style={btnStyle} onClick={()=>dispatch (updateCart(product))}>Add to Cart</button>
+						</>})}
 		</div>
 	)
 }

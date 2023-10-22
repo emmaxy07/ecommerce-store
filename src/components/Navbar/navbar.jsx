@@ -3,15 +3,19 @@ import './navbar.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { showCategories } from '../ShoppingCart/shoppingCartSlice';
+import { useState } from 'react';
+import { setSearchResults } from '../ShoppingCart/shoppingCartSlice';
 
 
 function Navbar ({ showCart, setShowCart, firstCharAfterSpace, }) {
+	const [searchProduct, setSearchProduct] = useState("");
 	// const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
 
 	const dispatch = useDispatch();
 	const {
 		showCategoriesDropdown,
-		noOfItemsIncart
+		noOfItemsIncart,
+		products
 	} = useSelector(store => store.shoppingCart);
 
 	const toggleCategoriesDropdown = () => {
@@ -22,6 +26,14 @@ function Navbar ({ showCart, setShowCart, firstCharAfterSpace, }) {
 	const toggleCartDisplay = () => setShowCart(!showCart)
 	const style = {
 		cursor: "pointer"
+	}
+
+	const searchProducts = (e) => {
+		const searchedProduct = e.target.value;
+		const filteredProduct = products.filter((product) => {
+			return product.title.toLowerCase().includes(searchedProduct);
+		})
+		dispatch (setSearchResults(filteredProduct));
 	}
 
 	const categoriesList = [
@@ -60,6 +72,7 @@ function Navbar ({ showCart, setShowCart, firstCharAfterSpace, }) {
 			<div>
 		<span>{firstCharAfterSpace}</span>
       </div>
+	  <input className='input' placeholder='Search for product' type='text' value={searchProduct} onChange={(e)=>searchProducts(e)} />
 		</nav>
 	)
 }

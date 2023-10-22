@@ -2,7 +2,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1rem 2rem;
+	padding: 1rem 0rem;
 }
 
 .cart-container {
@@ -53,5 +53,12 @@
 	display: flex;
 	gap: 8px;
   }
-
+  
+  .input {
+	width: 300px;
+	height: 30px;
+	border: 1px solid gray;
+	border-radius: 8px;
+	outline: none;
+  }
 

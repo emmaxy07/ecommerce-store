@@ -12,4 +12,15 @@
 	border: 1px solid gray;
 	border-radius: 8px;
 	outline: none;
-  }
+}
+
+.sort-btn{
+	margin-left: 8px;
+	height: 33px;
+	width: 75px;
+	background-color: teal;
+	border: none;
+	color: white;
+	border-radius: 8px;
+	cursor: pointer;
+}

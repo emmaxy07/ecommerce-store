@@ -6,7 +6,8 @@ const initialState = {
     error: "",
     searchResults: [],
     cartItems: [],
-    noOfItemsIncart: 0
+    noOfItemsIncart: 0,
+    sortedItems: []
 }
 
 export default function ShoppingCartReducer(state = initialState, action){
@@ -97,6 +98,15 @@ export default function ShoppingCartReducer(state = initialState, action){
             cartItems: existingCartItems,
             noOfItemsIncart: existingCartItems.length
         }
+        case "sortItems":
+            let itemsToBeSorted = [...state.products];
+            const sortedItems = itemsToBeSorted.sort((a, b) => {
+                return a.title.localeCompare(b.title)
+            })
+            return {
+                ...state,
+                sortedItems
+            }
         default:
             return state;
     }
@@ -107,7 +117,6 @@ export function setLogin(){
         try{
        const res = await fetch('https://fakestoreapi.com/products');
        const data = await res.json();
-       console.log(data)
        dispatch({
         type: "login", 
         payload: data
@@ -228,8 +237,14 @@ export function getWomensClothing(){
 export const setSearchResults = (results) => ({
     type: 'setSearchResults',
     payload: results,
-  });
+});
   
-  export const clearSearchResults = () => ({
+export const clearSearchResults = () => ({
     type: 'clearSearchResults',
-  });
+});
+
+export function sortItems(){
+    return {
+        type: "sortItems",
+    }
+}

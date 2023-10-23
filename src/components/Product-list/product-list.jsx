@@ -2,16 +2,18 @@ import { useState } from 'react';
 import './product-list.css';
 import Product from '../product/product';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSearchResults, clearSearchResults } from '../ShoppingCart/shoppingCartSlice';
+import { setSearchResults, clearSearchResults, sortItems } from '../ShoppingCart/shoppingCartSlice';
 
 function ProductList() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchProduct, setSearchProduct] = useState("");
+  const [sortOrder, setSortOrder] = useState('asc');
 
   const dispatch = useDispatch();
 	const {
 		products,
-		searchResults
+		searchResults,
+		sortedItems
 	} = useSelector(store => store.shoppingCart);
 
   const searchProducts = (e) => {
@@ -28,13 +30,24 @@ function ProductList() {
  setIsSearching(searchedProduct !== "");
 }
   // Choose the array to map over based on whether a search is in progress.
-  const productsToDisplay = isSearching ? searchResults : products;
+  const renderProducts = isSearching ? searchResults : sortedItems.length > 0 ? sortedItems : products;
+
+  const sortingItems = () => {
+    if (sortOrder === 'asc') {
+      dispatch(sortItems());
+      setSortOrder('desc');
+    } else {
+      dispatch(sortItems());
+      setSortOrder('asc');
+    }
+  }
 
   return (
     <div >
 		<input className='input' placeholder='Search for product' type='text' value={searchProduct} onChange={(e)=>searchProducts(e)} />
+		<button className='sort-btn' onClick={sortingItems}>Sort: A-Z</button>
 		<div className="product-list">
-      {productsToDisplay.map((product) => 
+      {renderProducts.map((product) => 
         <Product key={product.id} product={product} />
       )}
 	  </div>

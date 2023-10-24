@@ -34,11 +34,7 @@ function ProductList() {
   const renderProducts = isSearching ? searchResults : sortedItems.length > 0 ? sortedItems : products;
 
   const sortingItems = () => {
-    if (sortOrder === 'asc') {
       dispatch(sortItems());
-    } else {
-      dispatch(sortItems());
-    }
   }
 
   

@@ -7,13 +7,14 @@ import { setSearchResults, clearSearchResults, sortItems } from '../ShoppingCart
 function ProductList() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchProduct, setSearchProduct] = useState("");
-  const [sortOrder, setSortOrder] = useState('asc');
+  // const [sortOrder, setSortOrder] = useState('asc');
 
   const dispatch = useDispatch();
 	const {
 		products,
 		searchResults,
-		sortedItems
+		sortedItems,
+    sortOrder
 	} = useSelector(store => store.shoppingCart);
 
   const searchProducts = (e) => {
@@ -35,17 +36,17 @@ function ProductList() {
   const sortingItems = () => {
     if (sortOrder === 'asc') {
       dispatch(sortItems());
-      setSortOrder('desc');
     } else {
       dispatch(sortItems());
-      setSortOrder('asc');
     }
   }
+
+  
 
   return (
     <div >
 		<input className='input' placeholder='Search for product' type='text' value={searchProduct} onChange={(e)=>searchProducts(e)} />
-		<button className='sort-btn' onClick={sortingItems}>Sort: A-Z</button>
+		<button className='sort-btn' onClick={sortingItems}>Sort $: {sortOrder === "asc" ? "Ascending" : "Descending"}</button>
 		<div className="product-list">
       {renderProducts.map((product) => 
         <Product key={product.id} product={product} />

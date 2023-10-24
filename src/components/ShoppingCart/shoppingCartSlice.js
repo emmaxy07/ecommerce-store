@@ -7,7 +7,8 @@ const initialState = {
     searchResults: [],
     cartItems: [],
     noOfItemsIncart: 0,
-    sortedItems: []
+    sortedItems: [],
+    sortOrder: "asc"
 }
 
 export default function ShoppingCartReducer(state = initialState, action){
@@ -101,11 +102,16 @@ export default function ShoppingCartReducer(state = initialState, action){
         case "sortItems":
             let itemsToBeSorted = [...state.products];
             const sortedItems = itemsToBeSorted.sort((a, b) => {
-                return a.title.localeCompare(b.title)
+                if(state.sortOrder === "asc"){
+                return a.price - b.price;
+                } else {
+                return b.price - a.price;
+                }
             })
             return {
                 ...state,
-                sortedItems
+                sortedItems,
+                sortOrder: state.sortOrder === 'asc' ? 'desc' : 'asc'
             }
         default:
             return state;

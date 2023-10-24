@@ -12,12 +12,13 @@
 	border: 1px solid gray;
 	border-radius: 8px;
 	outline: none;
+	margin-top: 20px;
 }
 
 .sort-btn{
 	margin-left: 8px;
-	height: 33px;
-	width: 75px;
+	height: 43px;
+	width: 125px;
 	background-color: teal;
 	border: none;
 	color: white;

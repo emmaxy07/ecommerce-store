@@ -13,6 +13,7 @@ import Login from './components/Login/Login';
 import { AppProvider } from './AppProviderContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLogin } from './components/ShoppingCart/shoppingCartSlice';
+import AppLogout from './components/AppLogout';
 
 
 const getTokenFromLocalStorage = () => {
@@ -29,7 +30,7 @@ const App = () => {
   const dispatch = useDispatch();
   const {
     isLoggedIn,
-    products,
+    // products,
     cartItems
   } = useSelector(store => store.shoppingCart);
   const navigate = useNavigate();
@@ -97,10 +98,12 @@ const App = () => {
         path='/products'
         element={
           <>
+          <AppLogout>
         <Navbar setShowCart={setShowCart} viewCart={viewCart} firstChar={firstChar}
                   firstCharAfterSpace={firstCharAfterSpace} />
       <Cart showCart={showCart} />
       <ProductList />
+      </AppLogout>
       </>
         }
       />}

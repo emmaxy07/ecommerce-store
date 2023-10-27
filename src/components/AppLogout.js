@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import LogoutWarningModal from "./Modal/LogoutWarningModal";
 
 const events = [
     "load",
@@ -7,9 +8,12 @@ const events = [
     "click",
     "scroll",
     "keypress",
+    "pointermove",
+    "touchmove"
   ];
 
 const AppLogout = ({ children }) => {
+  // const [isWarningModalOpen, setWarningModalOpen] = useState(false);
     let timer;
 
     const handleLogoutTimer = () => {
@@ -22,8 +26,8 @@ const AppLogout = ({ children }) => {
           });
           // logs out user
           logoutAction();
-        }, 10000); // 10000ms = 10secs. You can change the time.
-      };
+        }, 10000); // 60000ms = 60secs. You can change the time.
+      }; 
       
       // this resets the timer if it exists.
       const resetTimer = () => {
@@ -44,7 +48,12 @@ const AppLogout = ({ children }) => {
         window.location.pathname = "/";
       };
 
-    return children;
+    return (
+      <div>
+        {children}
+        <LogoutWarningModal/>
+      </div>
+    );
   };
 
   export default AppLogout;

@@ -14,6 +14,7 @@ import { AppProvider } from './AppProviderContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLogin } from './components/ShoppingCart/shoppingCartSlice';
 import AppLogout from './components/AppLogout';
+import LogoutWarningModal from './components/Modal/LogoutWarningModal';
 
 
 const getTokenFromLocalStorage = () => {

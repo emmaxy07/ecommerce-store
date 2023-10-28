@@ -4,6 +4,7 @@ import Navbar from "../../Navbar/navbar";
 import loader from "../../../assets/Spinner-1s-200px.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCart, getElectronics } from "../../ShoppingCart/shoppingCartSlice";
+import LogoutWarningModal from "../../Modal/LogoutWarningModal";
 
 
 const Electronics = () =>{

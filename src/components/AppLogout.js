@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import LogoutWarningModal from "./Modal/LogoutWarningModal";
+import IdleMonitor from "./Modal/IdleMonitor";
 
 const events = [
     "load",
@@ -10,7 +11,7 @@ const events = [
     "keypress",
     "pointermove",
     "touchmove"
-  ];
+];
 
 const AppLogout = ({ children }) => {
   // const [isWarningModalOpen, setWarningModalOpen] = useState(false);
@@ -51,7 +52,8 @@ const AppLogout = ({ children }) => {
     return (
       <div>
         {children}
-        <LogoutWarningModal/>
+        {/* <LogoutWarningModal/> */}
+        {/* <IdleMonitor /> */}
       </div>
     );
   };

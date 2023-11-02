@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-import LogoutWarningModal from "./Modal/LogoutWarningModal";
-import IdleMonitor from "./Modal/IdleMonitor";
+import { useEffect } from "react";
 
 const events = [
     "load",
@@ -53,7 +51,6 @@ const AppLogout = ({ children }) => {
       <div>
         {children}
         {/* <LogoutWarningModal/> */}
-        {/* <IdleMonitor /> */}
       </div>
     );
   };

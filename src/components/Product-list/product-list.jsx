@@ -3,7 +3,8 @@ import './product-list.css';
 import Product from '../product/product';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchResults, clearSearchResults, sortItems } from '../ShoppingCart/shoppingCartSlice';
-import LogoutWarningModal from '../Modal/LogoutWarningModal';
+import { Link } from 'react-router-dom';
+// import LogoutWarningModal from '../Modal/LogoutWarningModal';
 
 function ProductList() {
   const [isSearching, setIsSearching] = useState(false);
@@ -41,13 +42,14 @@ function ProductList() {
   
 
   return (
-    <div >
+    <div>
 		<input className='input' placeholder='Search for product' type='text' value={searchProduct} onChange={(e)=>searchProducts(e)} />
 		<button className='sort-btn' onClick={sortingItems}>Sort $: {sortOrder === "asc" ? "Ascending" : "Descending"}</button>
-    <LogoutWarningModal />
 		<div className="product-list">
       {renderProducts.map((product) => 
-        <Product key={product.id} product={product} />
+      <Link className='link' key={product.id} to={`/product/${product.id}`}>
+        <Product product={product} />
+        </Link>
       )}
 	  </div>
     </div>

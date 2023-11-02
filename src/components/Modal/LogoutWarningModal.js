@@ -27,7 +27,7 @@ function LogoutWarningModal() {
                 clearTimeout(inactivityTimer);
             }
             console.log("here")
-            inactivityTimer = setTimeout(openModal, 7000); // 2 seconds of inactivity
+            inactivityTimer = setTimeout(openModal, 7000); // 7 seconds of inactivity
         };
 
         const handleActivity = () => {

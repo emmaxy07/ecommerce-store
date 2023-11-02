@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setLogin } from './components/ShoppingCart/shoppingCartSlice';
 import AppLogout from './components/AppLogout';
 import LogoutWarningModal from './components/Modal/LogoutWarningModal';
+import SingleProduct from './components/SingleProduct/SingleProduct';
 
 
 const getTokenFromLocalStorage = () => {
@@ -31,7 +32,7 @@ const App = () => {
   const dispatch = useDispatch();
   const {
     isLoggedIn,
-    // products,
+    products,
     cartItems
   } = useSelector(store => store.shoppingCart);
   const navigate = useNavigate();
@@ -103,6 +104,7 @@ const App = () => {
         <Navbar setShowCart={setShowCart} viewCart={viewCart} firstChar={firstChar}
                   firstCharAfterSpace={firstCharAfterSpace} />
       <Cart showCart={showCart} />
+      <LogoutWarningModal />
       <ProductList />
       </AppLogout>
       </>
@@ -114,6 +116,7 @@ const App = () => {
         <CartPage />
       }
       />
+      <Route path='/product/:id' element={<SingleProduct />} />
       <Route path="/category/Men's Clothing" element={<MensClothing  />} />
       <Route path="/category/Women's Clothing" element={<WomensClothing />} />
       <Route path="/category/Electronics" element={<Electronics />} />

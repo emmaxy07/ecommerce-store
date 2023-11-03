@@ -1,3 +1,12 @@
+.single-product {
+    display: flex;
+    gap: 90px;
+    position: absolute;
+    top: 60%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
+
 img {
     width: 400px;
     height: 400px;
@@ -5,4 +14,17 @@ img {
 
 .product-title {
     font-size: 30px;
+}
+
+.cart-btn-div {
+    margin-top: 170px;
+}
+
+.cart-btn {
+    background-color: rgb(46, 187, 187);
+    color: white;
+    padding: 8px 16px;
+	border: 1px solid rgb(46, 187, 187);
+	border-radius: 4px;
+    cursor: pointer;
 }

@@ -25,7 +25,7 @@ const AppLogout = ({ children }) => {
           });
           // logs out user
           logoutAction();
-        }, 10000); // 60000ms = 60secs. You can change the time.
+        }, 20000); // 200000ms = 20secs. You can change the time.
       }; 
       
       // this resets the timer if it exists.
@@ -50,7 +50,6 @@ const AppLogout = ({ children }) => {
     return (
       <div>
         {children}
-        {/* <LogoutWarningModal/> */}
       </div>
     );
   };

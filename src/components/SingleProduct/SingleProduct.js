@@ -25,6 +25,8 @@ function SingleProduct() {
             <div>
             <img src={product.image} alt={product.title} />
             <p className="product-title">{product.title}</p>
+            <p>${product.price}</p>
+            <p>{product.description}</p>
             </div>
             <div className="cart-btn-div">
                 <button className="cart-btn" onClick={()=> dispatch (updateCart(product))}>Add To Cart</button>

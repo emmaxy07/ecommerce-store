@@ -1,6 +1,6 @@
 /* Login.css */
 .login {
-    background-color: #3c8dbc;
+    background-color: rgb(46, 187, 187);
     height: 100vh; /* Set the height to fill the entire viewport vertically */
     display: flex;
     justify-content: center;
@@ -46,7 +46,7 @@
   .login-form button {
     width: 100%;
     padding: 10px;
-    background-color: #3c8dbc;
+    background-color: rgb(46, 187, 187);
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -56,7 +56,7 @@
   }
   
   .login-form button:hover {
-    background-color: #3080b0;
+    background-color: teal;
   }
   
   /* Center the checkbox and label */

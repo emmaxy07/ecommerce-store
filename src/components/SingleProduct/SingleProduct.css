@@ -2,7 +2,7 @@
     display: flex;
     gap: 90px;
     position: absolute;
-    top: 60%;
+    top: 80%;
     left: 40%;
     transform: translate(-50%, -50%);
 }
@@ -23,8 +23,14 @@ img {
 .cart-btn {
     background-color: rgb(46, 187, 187);
     color: white;
-    padding: 8px 16px;
+    /* padding: 8px 10px; */
 	border: 1px solid rgb(46, 187, 187);
 	border-radius: 4px;
     cursor: pointer;
+    width: 90px;
+    height: 40px;
+}
+
+.cart-btn:hover {
+    background-color: teal;
 }

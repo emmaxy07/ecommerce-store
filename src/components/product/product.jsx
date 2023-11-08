@@ -28,13 +28,13 @@ function Product ({product}) {
 
 	return (
 		<div className={`product`}>
-						<div><img src={product.image} alt={product.title} />
-						<p className={isHovered ? 'multiline' : ''} title={product.title}>
-        {isHovered ? product.title : truncateTitle(product.title)}
-      </p>
-						<p>${product.price}</p>
-						<button style={btnStyle} onClick={()=>dispatch (updateCart(product))}>Add to Cart</button>
-						</div>
+		<div><img src={product.image} alt={product.title} />
+		<p className={isHovered ? 'multiline' : ''} title={product.title}>
+	{isHovered ? product.title : truncateTitle(product.title)}
+	</p>
+		<p>${product.price}</p>
+		<button style={btnStyle} onClick={()=>dispatch (updateCart(product))}>Add to Cart</button>
+		</div>
 		</div>
 	)
 }

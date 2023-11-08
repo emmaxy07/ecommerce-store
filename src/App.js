@@ -100,13 +100,13 @@ const App = () => {
         path='/products'
         element={
           <>
-          {/* <AppLogout> */}
+          <AppLogout>
         <Navbar setShowCart={setShowCart} viewCart={viewCart} firstChar={firstChar}
                   firstCharAfterSpace={firstCharAfterSpace} />
       <Cart showCart={showCart} />
       <LogoutWarningModal />
       <ProductList />
-      {/* </AppLogout> */}
+      </AppLogout>
       </>
         }
       />}

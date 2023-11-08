@@ -1,18 +1,22 @@
 import "./CheckoutPage.css"; 
-
 import { useState } from "react";
+import { useSelector } from 'react-redux';
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 
+
 function CheckoutPage() {
-  const [amount, setAmount] = useState(0);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
+  const {
+    totalPrice,
+  } = useSelector((store) => store.shoppingCart);
+
   const config = {
     public_key: "FLWPUBK_TEST-4b66e5c6aa3baebab7fa18453d86993d-X",
     tx_ref: Date.now(),
-    amount: amount,
+    amount: totalPrice,
     currency: "USD",
     payment_options: "card, mobilemoney, ussd",
     customer: {
@@ -35,7 +39,7 @@ function CheckoutPage() {
         <input
           type="number"
           placeholder="Amount"
-          onChange={(e) => setAmount(e.target.value)}
+          value={totalPrice.toFixed(2)}
         />
         <input
           type="text"

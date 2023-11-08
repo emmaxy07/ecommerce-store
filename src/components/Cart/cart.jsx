@@ -12,13 +12,13 @@ const Cart = ({showCart}) =>{
 
   const dispatch = useDispatch();
   const {
-    cartItems
+    cartItems,
+    itemsPrice,
+    taxPrice,
+    shippingPrice,
+    totalPrice
   } = useSelector(store => store.shoppingCart);
 
-    const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
-    const taxPrice = itemsPrice * 0.14;
-    const shippingPrice = itemsPrice > 2000 ? 0 : 20;
-    const totalPrice = itemsPrice + taxPrice + shippingPrice;
     return (
         <div>
             {showCart && cartItems.map((item) => (

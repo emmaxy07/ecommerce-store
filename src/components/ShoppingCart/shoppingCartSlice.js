@@ -8,7 +8,11 @@ const initialState = {
     cartItems: [],
     noOfItemsIncart: 0,
     sortedItems: [],
-    sortOrder: "asc"
+    sortOrder: "asc",
+    itemsPrice: 0,
+    taxPrice: 0,
+    shippingPrice: 0,
+    totalPrice: 0,
 }
 
 export default function ShoppingCartReducer(state = initialState, action){
@@ -113,6 +117,18 @@ export default function ShoppingCartReducer(state = initialState, action){
                 sortedItems,
                 sortOrder: state.sortOrder === 'asc' ? 'desc' : 'asc'
             }
+        case "updatePrices":
+            const newItemsPrice = [...state.cartItems].reduce((a, c) => a + c.qty * c.price, 0);
+            const taxPrice = newItemsPrice * 0.14;
+            const shippingPrice = newItemsPrice > 2000 ? 0 : 20;
+            const totalPrice = newItemsPrice + taxPrice + shippingPrice;
+            return {
+                ...state,
+                itemsPrice: newItemsPrice,
+                taxPrice,
+                shippingPrice,
+                totalPrice,
+              };
         default:
             return state;
     }
@@ -254,3 +270,9 @@ export function sortItems(){
         type: "sortItems",
     }
 }
+
+export function updatePrices() {
+    return {
+      type: "updatePrices",
+    };
+  }

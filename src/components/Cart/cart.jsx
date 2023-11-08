@@ -1,8 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './cart.css';
+import { useNavigate } from 'react-router-dom';
 import { updateCart, onRemove } from '../ShoppingCart/shoppingCartSlice';
 
 const Cart = ({showCart}) =>{
+  const navigate = useNavigate();
+
+  function goToCheckout(){
+    navigate("/checkout");
+  }
 
   const dispatch = useDispatch();
   const {
@@ -63,7 +69,7 @@ const Cart = ({showCart}) =>{
             </div>
             <hr />
             <div className="row">
-              <button className='remove' onClick={() => alert('Implement Checkout!')}>
+              <button className='checkout' onClick={goToCheckout}>
                 Checkout
               </button>
             </div>

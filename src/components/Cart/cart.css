@@ -4,4 +4,23 @@
 	background-color: rgb(46, 187, 187);
 	color: white;
 	border: 1px solid rgb(46, 187, 187);
+	cursor: pointer;
+}
+
+.remove:hover, .add:hover {
+	background-color: teal;
+}
+
+.checkout {
+	padding: 8px 16px;
+	border-radius: 4px;
+	background-color: rgb(46, 187, 187);
+	color: white;
+	border: 1px solid rgb(46, 187, 187);
+	cursor: pointer;
+}
+
+.checkout:hover {
+	cursor: pointer;
+	background-color: teal;
 }

@@ -16,6 +16,7 @@ import { setLogin } from './components/ShoppingCart/shoppingCartSlice';
 import AppLogout from './components/AppLogout';
 import LogoutWarningModal from './components/Modal/LogoutWarningModal';
 import SingleProduct from './components/SingleProduct/SingleProduct';
+import CheckoutPage from './components/CheckoutPage/CheckoutPage';
 
 
 const getTokenFromLocalStorage = () => {
@@ -32,7 +33,6 @@ const App = () => {
   const dispatch = useDispatch();
   const {
     isLoggedIn,
-    products,
     cartItems
   } = useSelector(store => store.shoppingCart);
   const navigate = useNavigate();
@@ -100,13 +100,13 @@ const App = () => {
         path='/products'
         element={
           <>
-          <AppLogout>
+          {/* <AppLogout> */}
         <Navbar setShowCart={setShowCart} viewCart={viewCart} firstChar={firstChar}
                   firstCharAfterSpace={firstCharAfterSpace} />
       <Cart showCart={showCart} />
       <LogoutWarningModal />
       <ProductList />
-      </AppLogout>
+      {/* </AppLogout> */}
       </>
         }
       />}
@@ -121,6 +121,7 @@ const App = () => {
       <Route path="/category/Women's Clothing" element={<WomensClothing />} />
       <Route path="/category/Electronics" element={<Electronics />} />
       <Route path="/category/Jewelry" element={<Jewelry />} />
+      <Route path="/checkout" element={<CheckoutPage/>} />
       </Routes>
       </AppProvider>
     </div>

@@ -29,6 +29,9 @@ const App = () => {
   // const [cartItems, setCartItems] =useState([]);
 	const [showCart, setShowCart] = useState(false);
   const [username, setUsername] = useState("");
+  const [online, setOnline] = useState(navigator.onLine);
+  const [welcomeBack, setWelcomeBack] = useState(false);
+
 
   const dispatch = useDispatch();
   const {
@@ -38,12 +41,31 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const handleOnline = () =>{
+      setOnline(true);
+      setWelcomeBack(true);
+
+      setTimeout(() => {
+        setWelcomeBack(false);
+      }, 3000);
+    }
+
+    const handleOffline = () =>{
+      setOnline(false);
+    }
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
     const token = getTokenFromLocalStorage();
     if (token){
       // setIsLoggedIn(true);
       dispatch(setLogin());
     }
-    // fetchProducts();
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline)
+    }
   }, [dispatch]);
 
   // function fetchProducts() {
@@ -100,13 +122,16 @@ const App = () => {
         path='/products'
         element={
           <>
-          <AppLogout>
+          {/* <AppLogout> */}
         <Navbar setShowCart={setShowCart} viewCart={viewCart} firstChar={firstChar}
                   firstCharAfterSpace={firstCharAfterSpace} />
+                  {online ? ""
+ : <div style={{backgroundColor: "red", color: "white"}}>You are offline</div>}
+ {welcomeBack && <div style={{ backgroundColor: "green", color: "white" }}>Welcome back! You are online</div>}
       <Cart showCart={showCart} />
       <LogoutWarningModal />
       <ProductList />
-      </AppLogout>
+      {/* </AppLogout> */}
       </>
         }
       />}

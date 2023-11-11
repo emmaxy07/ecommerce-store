@@ -126,8 +126,8 @@ const App = () => {
         <Navbar setShowCart={setShowCart} viewCart={viewCart} firstChar={firstChar}
                   firstCharAfterSpace={firstCharAfterSpace} />
                   {online ? ""
- : <div style={{backgroundColor: "red", color: "white"}}>You are offline</div>}
- {welcomeBack && <div style={{ backgroundColor: "green", color: "white" }}>Welcome back! You are online</div>}
+ : <div style={{backgroundColor: "red", color: "white", fontSize: "20px", height: "50px", paddingTop: "25px"}}>You are offline</div>}
+ {welcomeBack && <div className='welcome-back'>Welcome back! You are online</div>}
       <Cart showCart={showCart} />
       <LogoutWarningModal />
       <ProductList />

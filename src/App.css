@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.welcome-back{ 
+  font-size: 20px;
+  background-color: #78f278;
+  color: white;; 
+  height: 50px; 
+  padding-top: 25px;
+}

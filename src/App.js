@@ -122,7 +122,7 @@ const App = () => {
         path='/products'
         element={
           <>
-          {/* <AppLogout> */}
+          <AppLogout>
         <Navbar setShowCart={setShowCart} viewCart={viewCart} firstChar={firstChar}
                   firstCharAfterSpace={firstCharAfterSpace} />
                   {online ? ""
@@ -131,7 +131,7 @@ const App = () => {
       <Cart showCart={showCart} />
       <LogoutWarningModal />
       <ProductList />
-      {/* </AppLogout> */}
+      </AppLogout>
       </>
         }
       />}

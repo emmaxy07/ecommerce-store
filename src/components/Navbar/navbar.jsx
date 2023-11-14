@@ -3,11 +3,11 @@ import './navbar.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { showCategories } from '../ShoppingCart/shoppingCartSlice';
-import { useState } from 'react';
-import { setSearchResults } from '../ShoppingCart/shoppingCartSlice';
+// import { useState } from 'react';
+// import { setSearchResults } from '../ShoppingCart/shoppingCartSlice';
 
 
-function Navbar ({ showCart, setShowCart, firstCharAfterSpace, }) {
+function Navbar ({ showCart, setShowCart, firstCharAfterSpace, userImage }) {
 	// const [searchProduct, setSearchProduct] = useState("");
 	// const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
 
@@ -15,7 +15,7 @@ function Navbar ({ showCart, setShowCart, firstCharAfterSpace, }) {
 	const {
 		showCategoriesDropdown,
 		noOfItemsIncart,
-		products
+		// products
 	} = useSelector(store => store.shoppingCart);
 
 	const toggleCategoriesDropdown = () => {
@@ -62,6 +62,7 @@ function Navbar ({ showCart, setShowCart, firstCharAfterSpace, }) {
                 </Link>
 			</div>
 			<div>
+				<img src={userImage} alt='user' height="50px" />
 		<span>{firstCharAfterSpace}</span>
       </div>
 		</nav>

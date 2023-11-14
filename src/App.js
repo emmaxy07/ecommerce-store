@@ -31,6 +31,7 @@ const App = () => {
   const [username, setUsername] = useState("");
   const [online, setOnline] = useState(navigator.onLine);
   const [welcomeBack, setWelcomeBack] = useState(false);
+  const [userImage, setUserImage] = useState(null);
 
 
   const dispatch = useDispatch();
@@ -117,14 +118,14 @@ const App = () => {
     <div className="App">
       <AppProvider>
       <Routes>
-        <Route path='/' element={<Login login={login} username={username} setUsername={setUsername} />} />
+        <Route path='/' element={<Login login={login} username={username} setUsername={setUsername} setUserImage={setUserImage} />} />
        {isLoggedIn && <Route
         path='/products'
         element={
           <>
           <AppLogout>
         <Navbar setShowCart={setShowCart} viewCart={viewCart} firstChar={firstChar}
-                  firstCharAfterSpace={firstCharAfterSpace} />
+                  firstCharAfterSpace={firstCharAfterSpace} userImage={userImage} />
                   {online ? ""
  : <div style={{backgroundColor: "red", color: "white", fontSize: "20px", height: "50px", paddingTop: "25px"}}>You are offline</div>}
  {welcomeBack && <div className='welcome-back'>Welcome back! You are online</div>}

@@ -5,7 +5,7 @@ const setTokenInLocalStorage = (token) => {
   localStorage.setItem('token', token);
 }
 
-const Login = ({ login, username, setUsername }) =>{
+const Login = ({ login, username, setUsername, setUserImage }) =>{
     const [password, setPassword] = useState("");
     const [usernamecheck, setUsernamecheck] = useState("");
     const [passwordcheck, setPasswordcheck] = useState("");
@@ -38,6 +38,8 @@ const Login = ({ login, username, setUsername }) =>{
               })
               .then(res => res.json())
               .then(data => {
+                console.log(data.image);
+                setUserImage(data.image);
                 const token = data.token;
                 setTokenInLocalStorage(token);
                 login();

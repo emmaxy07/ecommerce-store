@@ -18,6 +18,7 @@ function ProductList() {
 		sortedItems,
     sortOrder
 	} = useSelector(store => store.shoppingCart);
+  console.log({products})
 
   const searchProducts = (e) => {
 	const searchedProduct = e.target.value.toLowerCase();

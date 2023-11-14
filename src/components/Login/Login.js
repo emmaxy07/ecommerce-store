@@ -7,49 +7,61 @@ const setTokenInLocalStorage = (token) => {
   localStorage.setItem('token', token);
 }
 
-const Login = () =>{
-    // const [password, setPassword] = useState("");
-    const [usernamecheck, setUsernamecheck] = useState("");
-    const [passwordcheck, setPasswordcheck] = useState("");
+const Login = ({login}) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [usernamecheck, setUsernamecheck] = useState("");
 
-    const dispatch = useDispatch();
-    const { username, password} = useSelector(store => store.shoppingCart)
+  const dispatch = useDispatch();
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-      
-        // const hasSpecialCharacters = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-        if (username.length < 3) {
-          setUsernamecheck("Username must be longer than 3 characters");
-        } else {
-          setUsernamecheck("");
-        }
-      
-        if (username.length >= 3 && password.length >= 3 ) {
-          dispatch(setLogin(username, password))
-             }
-          };
-      
+  const handleLogin = (e) => {
+    e.preventDefault();
 
-    return (
-        <div className="login">
-           <form className="login-form" onSubmit={handleLogin}>
-           <h5>Enter Login Credentials</h5> 
-            <div className="username-div">
-                <input className="username" type="text" value={username} onChange={(e) => dispatch({ type: "updateUsername", payload: e.target.value })} placeholder="Username" />
-                <p className="usernamecheck">{usernamecheck}</p>
-            </div>
-            <div className="password-div">
-                <input className="password" type="password" value={password} onChange={(e) => dispatch({ type: "updatePassword", payload: e.target.value })} placeholder="Password" />
-                <p className="passwordcheck">{passwordcheck}</p>
-            </div>
-            <div>
-                <input type="checkbox" /><label>Remember Me</label>
-                <button>Login</button>
-            </div>
-           </form>
+    console.log({username, password})
+    if (username.length < 3) {
+      // Handle username validation
+    } else {
+      // Clear any previous validation errors
+      setUsernamecheck("");
+
+      // Dispatch the setLogin action with the current username and password
+      dispatch(setLogin(username, password));
+    }
+    login();
+  };
+
+  return (
+    <div className="login">
+      <form className="login-form" onSubmit={handleLogin}>
+        <h5>Enter Login Credentials</h5>
+        <div className="username-div">
+          <input
+            className="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
+          />
+          <p className="usernamecheck">{usernamecheck}</p>
         </div>
-    )
-}
+        <div className="password-div">
+          <input
+            className="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+          {/* Password validation message can be added here */}
+        </div>
+        <div>
+          <input type="checkbox" />
+          <label>Remember Me</label>
+          <button type="submit">Login</button>
+        </div>
+      </form>
+    </div>
+  );
+};
 
 export default Login;

@@ -112,10 +112,10 @@ const App = () => {
   }
 
   const firstChar = username.charAt(0).toUpperCase();
-  const firstCharAfterSpace = username?username
+  const firstCharAfterSpace = username
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase())
-    .join(""):"";
+    .join("")
 
   return (
     <div className="App">

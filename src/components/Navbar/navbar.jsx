@@ -7,7 +7,7 @@ import { showCategories } from '../ShoppingCart/shoppingCartSlice';
 // import { setSearchResults } from '../ShoppingCart/shoppingCartSlice';
 
 
-function Navbar ({ showCart, setShowCart, firstCharAfterSpace, userImage }) {
+function Navbar ({ showCart, setShowCart, firstCharAfterSpace }) {
 	// const [searchProduct, setSearchProduct] = useState("");
 	// const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
 
@@ -15,6 +15,7 @@ function Navbar ({ showCart, setShowCart, firstCharAfterSpace, userImage }) {
 	const {
 		showCategoriesDropdown,
 		noOfItemsIncart,
+		userImage
 		// products
 	} = useSelector(store => store.shoppingCart);
 

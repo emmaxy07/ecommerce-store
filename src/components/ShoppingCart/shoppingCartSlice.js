@@ -24,13 +24,17 @@ export default function ShoppingCartReducer(state = initialState, action){
             return {
                 ...state,
                 isLoggedIn: true,
-                products: action.payload,
-                userImage: action.payload.image,
+                userImage: action.payload.userImage,
                 username: action.payload.username, 
                 password: action.payload.password, 
                 error: "", 
             }
-            case "updateUsername":
+        case "getProducts":
+            return {
+                ...state,
+                products: action.payload
+            }
+        case "updateUsername":
                 return {
                     ...state,
                     username: action.payload
@@ -288,56 +292,61 @@ export function updatePassword(){
     }
 }
 
+// shoppingCartSlice.js
+
 export function setLogin(username, password) {
     return async function (dispatch) {
-        try {
-            dispatch({ type: "startLoading" });
-
-            // API call for fetching products
-            const productsRes = await fetch('https://fakestoreapi.com/products');
-            const productsData = await productsRes.json();
-
-            // Dispatch the "login" action for product fetching
-            dispatch({
-                type: "login",
-                payload: productsData
-            });
-
-            // API call for user authentication
-            const loginRes = await fetch('https://dummyjson.com/auth/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    username: username,
-                    password: password,
-                    // expiresInMins: 60, // optional
-                })
-            });
-
-            const loginData = await loginRes.json();
-
-            if (loginRes.ok) {
-                // Dispatch the "login" action for user authentication
-                localStorage.setItem('token', loginData.token);
-                
-                dispatch({
-                    type: "login",
-                    payload: loginData
-                });
-            } else {
-                // Handle login error
-                dispatch({
-                    type: "login-error",
-                    error: loginData.message // Assuming your API returns an error message
-                });
-            }
-        } catch (err) {
-            dispatch({
-                type: "login-error",
-                error: err.message
-            });
-        } finally {
-            dispatch({ type: "stopLoading" });
+      try {
+        dispatch({ type: "startLoading" });
+  
+        // API call for user authentication
+        const loginRes = await fetch('https://dummyjson.com/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username: username,
+            password: password,
+          })
+        });
+  
+        const loginData = await loginRes.json();
+  
+        if (loginRes.ok) {
+          // Dispatch the "login" action for user authentication with username, password, and token
+          dispatch({
+            type: "login",
+            payload: { username, password, token: loginData.token, userImage: loginData.image }
+          });
+  
+          // Save the token in local storage
+          localStorage.setItem('token', loginData.token);
+  
+          // Fetch products after successful authentication
+          const productsRes = await fetch('https://fakestoreapi.com/products');
+          const productsData = await productsRes.json();
+  
+          // Dispatch the action for fetching products
+          dispatch({
+            type: "getProducts",
+            payload: productsData
+          });
+  
+        } else {
+          // Handle login error
+          dispatch({
+            type: "login-error",
+            error: loginData.message
+          });
         }
+  
+      } catch (err) {
+        dispatch({
+          type: "login-error",
+          error: err.message
+        });
+      } finally {
+        dispatch({ type: "stopLoading" });
+      }
     };
-}
+  }
+  

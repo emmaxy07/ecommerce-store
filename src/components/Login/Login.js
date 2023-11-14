@@ -1,14 +1,19 @@
 import { useState } from "react";
 import "./Login.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setLogin } from "../ShoppingCart/shoppingCartSlice";
 
 const setTokenInLocalStorage = (token) => {
   localStorage.setItem('token', token);
 }
 
-const Login = ({ login, username, setUsername, setUserImage }) =>{
-    const [password, setPassword] = useState("");
+const Login = () =>{
+    // const [password, setPassword] = useState("");
     const [usernamecheck, setUsernamecheck] = useState("");
     const [passwordcheck, setPasswordcheck] = useState("");
+
+    const dispatch = useDispatch();
+    const { username, password} = useSelector(store => store.shoppingCart)
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -20,30 +25,8 @@ const Login = ({ login, username, setUsername, setUserImage }) =>{
           setUsernamecheck("");
         }
       
-        // if (password.length < 3 || !hasSpecialCharacters.test(password)) {
-        //   setPasswordcheck("Password must be longer than 3 characters and must have a special character");
-        // } else {
-        //   setPasswordcheck("");
-        // }
-      
         if (username.length >= 3 && password.length >= 3 ) {
-          fetch('https://dummyjson.com/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({   
-                    username: username,
-                    password: password,
-                    // expiresInMins: 60, // optional
-                  })
-              })
-              .then(res => res.json())
-              .then(data => {
-                console.log(data.image);
-                setUserImage(data.image);
-                const token = data.token;
-                setTokenInLocalStorage(token);
-                login();
-              }).catch(err => console.error(err))
+          dispatch(setLogin(username, password))
              }
           };
       
@@ -53,11 +36,11 @@ const Login = ({ login, username, setUsername, setUserImage }) =>{
            <form className="login-form" onSubmit={handleLogin}>
            <h5>Enter Login Credentials</h5> 
             <div className="username-div">
-                <input className="username" type="text" value={username} onChange={(e)=>setUsername(e.target.value)} placeholder="Username" />
+                <input className="username" type="text" value={username} onChange={(e) => dispatch({ type: "updateUsername", payload: e.target.value })} placeholder="Username" />
                 <p className="usernamecheck">{usernamecheck}</p>
             </div>
             <div className="password-div">
-                <input className="password" type="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password" />
+                <input className="password" type="password" value={password} onChange={(e) => dispatch({ type: "updatePassword", payload: e.target.value })} placeholder="Password" />
                 <p className="passwordcheck">{passwordcheck}</p>
             </div>
             <div>

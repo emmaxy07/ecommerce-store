@@ -28,18 +28,21 @@ const App = () => {
   // const [products, setProducts] = useState([]);
   // const [cartItems, setCartItems] =useState([]);
 	const [showCart, setShowCart] = useState(false);
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
   const [online, setOnline] = useState(navigator.onLine);
   const [welcomeBack, setWelcomeBack] = useState(false);
-  const [userImage, setUserImage] = useState(null);
 
 
   const dispatch = useDispatch();
   const {
     isLoggedIn,
-    cartItems
+    cartItems,
+    username,
+    password,
+    userImage
   } = useSelector(store => store.shoppingCart);
   const navigate = useNavigate();
+  console.log({username, password})
 
   useEffect(() => {
     const handleOnline = () =>{
@@ -104,21 +107,21 @@ const App = () => {
 
   const login = () =>{
     // setIsLoggedIn(true);
-    dispatch(setLogin());
+    dispatch(setLogin(username, password));
     navigate("/products");
   }
 
   const firstChar = username.charAt(0).toUpperCase();
-  const firstCharAfterSpace = username
+  const firstCharAfterSpace = username?username
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase())
-    .join("");
+    .join(""):"";
 
   return (
     <div className="App">
       <AppProvider>
       <Routes>
-        <Route path='/' element={<Login login={login} username={username} setUsername={setUsername} setUserImage={setUserImage} />} />
+        <Route path='/' element={<Login login={login} username={username} />} />
        {isLoggedIn && <Route
         path='/products'
         element={

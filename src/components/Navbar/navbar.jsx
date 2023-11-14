@@ -63,7 +63,7 @@ function Navbar ({ showCart, setShowCart, firstCharAfterSpace }) {
                 </Link>
 			</div>
 			<div>
-				<img src={userImage} alt='user' height="50px" />
+				<img src={userImage} alt='user' className='img' />
 		<span>{firstCharAfterSpace}</span>
       </div>
 		</nav>

@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './product-list.css';
 import Product from '../product/product';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchResults, clearSearchResults, sortItems } from '../ShoppingCart/shoppingCartSlice';
+import { getProducts } from '../ShoppingCart/shoppingCartSlice';
 import { Link } from 'react-router-dom';
-// import LogoutWarningModal from '../Modal/LogoutWarningModal';
+
 
 function ProductList() {
+  console.log("product list mounted")
   const [isSearching, setIsSearching] = useState(false);
   const [searchProduct, setSearchProduct] = useState("");
   // const [sortOrder, setSortOrder] = useState('asc');
@@ -40,6 +42,9 @@ function ProductList() {
       dispatch(sortItems());
   }
 
+  useEffect(()=>{
+    dispatch(getProducts());
+  },[dispatch]);
   
 
   return (

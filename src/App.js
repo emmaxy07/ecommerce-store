@@ -42,7 +42,6 @@ const App = () => {
     userImage
   } = useSelector(store => store.shoppingCart);
   const navigate = useNavigate();
-  console.log({username, password})
 
   useEffect(() => {
     const handleOnline = () =>{

@@ -350,3 +350,8 @@ export function setLogin(username, password) {
     };
   }
   
+  export function getProducts(){
+    return {
+        type: "getProducts"
+    }
+  }

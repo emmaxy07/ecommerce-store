@@ -351,7 +351,24 @@ export function setLogin(username, password) {
   }
   
   export function getProducts(){
-    return {
-        type: "getProducts"
+    return async function (dispatch) {
+        try {
+        dispatch({ type: "startLoading" });
+            const productsRes = await fetch('https://fakestoreapi.com/products');
+              const productsData = await productsRes.json();
+      
+              // Dispatch the action for fetching products
+              dispatch({
+                type: "getProducts",
+                payload: productsData
+              });
+        } catch (err){
+            dispatch({
+                type: "login-error",
+                error: err.message
+              });
+            } finally {
+              dispatch({ type: "stopLoading" });
+        }
     }
   }

@@ -18,7 +18,7 @@ function ProductList() {
 		products,
 		searchResults,
 		sortedItems,
-    sortOrder
+    sortOrder,
 	} = useSelector(store => store.shoppingCart);
   console.log({products})
 
@@ -43,7 +43,9 @@ function ProductList() {
   }
 
   useEffect(()=>{
+    
     dispatch(getProducts());
+  
   },[dispatch]);
   
 

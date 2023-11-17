@@ -351,9 +351,11 @@ export function setLogin(username, password) {
   }
   
   export function getProducts(){
-    return async function (dispatch) {
+    return async function (dispatch, getState) {
         try {
-        dispatch({ type: "startLoading" });
+            const loggedIn = getState().shoppingCart.isLoggedIn;
+
+            if (loggedIn) dispatch({ type: "startLoading" });
             const productsRes = await fetch('https://fakestoreapi.com/products');
               const productsData = await productsRes.json();
       

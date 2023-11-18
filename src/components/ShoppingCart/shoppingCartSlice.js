@@ -322,14 +322,14 @@ export function setLogin(username, password) {
           localStorage.setItem('token', loginData.token);
   
           // Fetch products after successful authentication
-          const productsRes = await fetch('https://fakestoreapi.com/products');
-          const productsData = await productsRes.json();
+        //   const productsRes = await fetch('https://fakestoreapi.com/products');
+        //   const productsData = await productsRes.json();
   
-          // Dispatch the action for fetching products
-          dispatch({
-            type: "getProducts",
-            payload: productsData
-          });
+        //   // Dispatch the action for fetching products
+        //   dispatch({
+        //     type: "getProducts",
+        //     payload: productsData
+        //   });
   
         } else {
           // Handle login error

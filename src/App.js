@@ -104,12 +104,6 @@ const App = () => {
 
   const viewCart = () => cartItems;
 
-  const login = () =>{
-    // setIsLoggedIn(true);
-    dispatch(setLogin(username, password));
-    navigate("/products");
-  }
-
   const firstChar = username.charAt(0).toUpperCase();
   const firstCharAfterSpace = username
     .split(" ")
@@ -120,7 +114,7 @@ const App = () => {
     <div className="App">
       <AppProvider>
       <Routes>
-        <Route path='/' element={<Login login={login} username={username} />} />
+        <Route path='/' element={<Login username={username} />} />
        {isLoggedIn && <Route
         path='/products'
         element={
@@ -132,7 +126,7 @@ const App = () => {
  : <div style={{backgroundColor: "red", color: "white", fontSize: "20px", height: "50px", paddingTop: "25px"}}>You are offline</div>}
  {welcomeBack && <div className='welcome-back'>Welcome back! You are online</div>}
       <Cart showCart={showCart} />
-      <LogoutWarningModal />
+      {/* <LogoutWarningModal /> */}
       <ProductList />
       </AppLogout>
       </>

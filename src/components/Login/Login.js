@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Login.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogin } from "../ShoppingCart/shoppingCartSlice";
+import { useNavigate } from "react-router-dom";
 
 const setTokenInLocalStorage = (token) => {
   localStorage.setItem('token', token);
@@ -11,23 +12,22 @@ const Login = ({login}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernamecheck, setUsernamecheck] = useState("");
+  const navigate = useNavigate();
+
 
   const dispatch = useDispatch();
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    console.log({username, password})
-    if (username.length < 3) {
       // Handle username validation
-    } else {
       // Clear any previous validation errors
       setUsernamecheck("");
 
       // Dispatch the setLogin action with the current username and password
       dispatch(setLogin(username, password));
-    }
-    login();
+      navigate("/products");
+      
   };
 
   return (

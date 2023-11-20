@@ -320,6 +320,7 @@ export function setLogin(username, password) {
   
           // Save the token in local storage
           localStorage.setItem('token', loginData.token);
+          localStorage.setItem('isLoggedIn', true);
   
           // Fetch products after successful authentication
         //   const productsRes = await fetch('https://fakestoreapi.com/products');
@@ -374,3 +375,28 @@ export function setLogin(username, password) {
         }
     }
   }
+
+  export function setInitialLoginStatus() {
+    return function (dispatch) {
+      try {
+        const token = localStorage.getItem('token');
+        const isLoggedIn = !!token; // Check if a token exists in local storage
+  
+        if (isLoggedIn) {
+          // If a token exists, set the login status in Redux
+          dispatch({
+            type: "login",
+            payload: {
+              username: '', // Set other relevant information if needed
+              password: '',
+              token: token,
+              userImage: null
+            }
+          });
+        }
+      } catch (err) {
+        console.error('Error initializing login status:', err);
+      }
+    };
+  }
+  

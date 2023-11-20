@@ -33,13 +33,7 @@ function HomePage({setShowCart, viewCart, firstChar, firstCharAfterSpace, showCa
 
     window.addEventListener("online", handleOnline);
     window.addEventListener("offline", handleOffline);
-    const getTokenFromLocalStorage = () => {
-      return localStorage.getItem('token');
-    };
-    const token = getTokenFromLocalStorage();
-    if (token){
-      dispatch(setLogin());
-    }
+   
 
     return () => {
       window.removeEventListener("online", handleOnline);

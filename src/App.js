@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import CartPage from './components/Cart/CartPage';
@@ -8,20 +8,36 @@ import Electronics from './components/Categories/Electronics/Electronics';
 import Jewelry from './components/Categories/Jewelry/Jewelry';
 import Login from './components/Login/Login';
 import { AppProvider } from './AppProviderContext';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SingleProduct from './components/SingleProduct/SingleProduct';
 import CheckoutPage from './components/CheckoutPage/CheckoutPage';
 import HomePage from './components/HomePage/HomePage';
+import { setInitialLoginStatus } from './components/ShoppingCart/shoppingCartSlice';
 
 
 const App = () => {
 	const [showCart, setShowCart] = useState(false);
+  const [initialized, setInitialized] = useState(false);
+  const dispatch = useDispatch()
 
   const {
     isLoggedIn,
     cartItems,
     username,
   } = useSelector(store => store.shoppingCart);
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // Check if logged in
+
+    // Assuming you have an action to set the initial login status in Redux
+    dispatch(setInitialLoginStatus(isLoggedIn));
+
+    setInitialized(true);
+  }, [dispatch]);
+
+  if (!initialized) {
+    return null; // Or a loading indicator while initializing
+  }
 
   const viewCart = () => cartItems;
 

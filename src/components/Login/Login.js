@@ -4,9 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLogin } from "../ShoppingCart/shoppingCartSlice";
 import { useNavigate } from "react-router-dom";
 
-const setTokenInLocalStorage = (token) => {
-  localStorage.setItem('token', token);
-}
+
 
 const Login = ({login}) => {
   const [username, setUsername] = useState("");

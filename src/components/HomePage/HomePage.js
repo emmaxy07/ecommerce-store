@@ -1,12 +1,10 @@
 import "./HomePage.css"
 import { useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import AppLogout from "../AppLogout"
 import Cart from "../Cart/cart"
 import Navbar from "../Navbar/navbar"
 import ProductList from "../Product-list/product-list"
-import { setLogin } from "../ShoppingCart/shoppingCartSlice"
-import { getProducts } from "../ShoppingCart/shoppingCartSlice"
 
 function HomePage({setShowCart, viewCart, firstChar, firstCharAfterSpace, showCart}) {
   const [online, setOnline] = useState(navigator.onLine);

@@ -383,6 +383,7 @@ export function setLogin(username, password) {
         const isLoggedIn = !!token; // Check if a token exists in local storage
   
         if (isLoggedIn) {
+            const userImage = localStorage.getItem('userImage');
           // If a token exists, set the login status in Redux
           dispatch({
             type: "login",
@@ -390,7 +391,7 @@ export function setLogin(username, password) {
               username: '', // Set other relevant information if needed
               password: '',
               token: token,
-              userImage: null
+              userImage: userImage || null
             }
           });
         }

@@ -18,6 +18,7 @@ function Navbar ({ showCart, setShowCart, firstCharAfterSpace }) {
 		userImage
 		// products
 	} = useSelector(store => store.shoppingCart);
+	console.log({userImage});
 
 	const toggleCategoriesDropdown = () => {
 		// setShowCategoriesDropdown(!showCategoriesDropdown);

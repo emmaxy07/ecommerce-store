@@ -1,12 +1,12 @@
 import { useState } from "react";
 import "./Login.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setLogin } from "../ShoppingCart/shoppingCartSlice";
 import { useNavigate } from "react-router-dom";
 
 
 
-const Login = ({login}) => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernamecheck, setUsernamecheck] = useState("");

@@ -26,7 +26,7 @@ const Login = ({login}) => {
 
       // Dispatch the setLogin action with the current username and password
       dispatch(setLogin(username, password));
-      navigate("/products");
+      navigate("/home");
       
   };
 

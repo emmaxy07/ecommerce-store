@@ -17,11 +17,12 @@ import AppLogout from './components/AppLogout';
 import LogoutWarningModal from './components/Modal/LogoutWarningModal';
 import SingleProduct from './components/SingleProduct/SingleProduct';
 import CheckoutPage from './components/CheckoutPage/CheckoutPage';
+import HomePage from './components/HomePage/HomePage';
 
 
-const getTokenFromLocalStorage = () => {
-  return localStorage.getItem('token');
-};
+// const getTokenFromLocalStorage = () => {
+//   return localStorage.getItem('token');
+// };
 
 const App = () => {
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,65 +30,13 @@ const App = () => {
   // const [cartItems, setCartItems] =useState([]);
 	const [showCart, setShowCart] = useState(false);
   // const [username, setUsername] = useState("");
-  const [online, setOnline] = useState(navigator.onLine);
-  const [welcomeBack, setWelcomeBack] = useState(false);
 
 
-  const dispatch = useDispatch();
   const {
     isLoggedIn,
     cartItems,
     username,
-    password,
-    userImage
   } = useSelector(store => store.shoppingCart);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const handleOnline = () =>{
-      setOnline(true);
-      setWelcomeBack(true);
-
-      setTimeout(() => {
-        setWelcomeBack(false);
-      }, 3000);
-    }
-
-    const handleOffline = () =>{
-      setOnline(false);
-    }
-
-    window.addEventListener("online", handleOnline);
-    window.addEventListener("offline", handleOffline);
-    const token = getTokenFromLocalStorage();
-    if (token){
-      // setIsLoggedIn(true);
-      dispatch(setLogin());
-    }
-
-    return () => {
-      window.removeEventListener("online", handleOnline);
-      window.removeEventListener("offline", handleOffline)
-    }
-  }, [dispatch]);
-
-  // function fetchProducts() {
-  //   fetch('https://fakestoreapi.com/products')
-  //     .then(res => res.json())
-  //     .then(productsData => {
-  //       console.log(productsData);
-  //       setProducts(productsData)
-  //     });
-  // }
-
-  // const updateCart = (product) => {
-  //   const exist = cartItems.find((x) => x.id === product.id)
-	// 	if(exist) {
-	// 		setCartItems(cartItems.map((x) => x.id ===product.id ? {...exist, qty: exist.qty + 1} : x))
-	// 	} else {
-	// 		setCartItems([...cartItems, {...product, qty: 1}])
-	// 	}
-  // }
 
   // const onRemove = (product) => {
   //   const exist = cartItems.find((x) => x.id === product.id);
@@ -116,20 +65,21 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Login username={username} />} />
        {isLoggedIn && <Route
-        path='/products'
+        path='/home'
         element={
-          <>
-          <AppLogout>
-        <Navbar setShowCart={setShowCart} viewCart={viewCart} firstChar={firstChar}
-                  firstCharAfterSpace={firstCharAfterSpace} userImage={userImage} />
-                  {online ? ""
- : <div style={{backgroundColor: "red", color: "white", fontSize: "20px", height: "50px", paddingTop: "25px"}}>You are offline</div>}
- {welcomeBack && <div className='welcome-back'>Welcome back! You are online</div>}
-      <Cart showCart={showCart} />
-      {/* <LogoutWarningModal /> */}
-      <ProductList />
-      </AppLogout>
-      </>
+//           <>
+//           <AppLogout>
+//         <Navbar setShowCart={setShowCart} viewCart={viewCart} firstChar={firstChar}
+//                   firstCharAfterSpace={firstCharAfterSpace} userImage={userImage} />
+//                   {online ? ""
+//  : <div style={{backgroundColor: "red", color: "white", fontSize: "20px", height: "50px", paddingTop: "25px"}}>You are offline</div>}
+//  {welcomeBack && <div className='welcome-back'>Welcome back! You are online</div>}
+//       <Cart showCart={showCart} />
+//       {/* <LogoutWarningModal /> */}
+//       <ProductList />
+//       </AppLogout>
+//       </>
+<HomePage setShowCart={setShowCart} viewCart={viewCart} firstChar={firstChar} firstCharAfterSpace={firstCharAfterSpace} showCart={showCart} />
         }
       />}
       <Route

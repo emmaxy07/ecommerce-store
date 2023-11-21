@@ -8,8 +8,6 @@ import { showCategories } from '../ShoppingCart/shoppingCartSlice';
 
 
 function Navbar ({ showCart, setShowCart, firstCharAfterSpace }) {
-	// const [searchProduct, setSearchProduct] = useState("");
-	// const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
 
 	const dispatch = useDispatch();
 	const {
@@ -18,10 +16,8 @@ function Navbar ({ showCart, setShowCart, firstCharAfterSpace }) {
 		userImage
 		// products
 	} = useSelector(store => store.shoppingCart);
-	console.log({userImage});
 
 	const toggleCategoriesDropdown = () => {
-		// setShowCategoriesDropdown(!showCategoriesDropdown);
 		dispatch(showCategories());
 	  };
 	

@@ -321,17 +321,8 @@ export function setLogin(username, password) {
           // Save the token in local storage
           localStorage.setItem('token', loginData.token);
           localStorage.setItem('isLoggedIn', true);
-  
-          // Fetch products after successful authentication
-        //   const productsRes = await fetch('https://fakestoreapi.com/products');
-        //   const productsData = await productsRes.json();
-  
-        //   // Dispatch the action for fetching products
-        //   dispatch({
-        //     type: "getProducts",
-        //     payload: productsData
-        //   });
-  
+          localStorage.setItem('userImage', loginData.image);
+          localStorage.setItem('username', loginData.username);
         } else {
           // Handle login error
           dispatch({
@@ -379,16 +370,21 @@ export function setLogin(username, password) {
   export function setInitialLoginStatus() {
     return function (dispatch) {
       try {
+
         const token = localStorage.getItem('token');
-        const isLoggedIn = !!token; // Check if a token exists in local storage
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+            // Check if a token exists in local storage
+        const userImage = localStorage.getItem('userImage');
+        const username = localStorage.getItem('username');
+
   
         if (isLoggedIn) {
-            const userImage = localStorage.getItem('userImage');
+            // const userImage = localStorage.getItem('userImage');
           // If a token exists, set the login status in Redux
           dispatch({
             type: "login",
             payload: {
-              username: '', // Set other relevant information if needed
+              username: username, // Set other relevant information if needed
               password: '',
               token: token,
               userImage: userImage || null

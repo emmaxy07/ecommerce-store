@@ -8,10 +8,8 @@ import { Link } from 'react-router-dom';
 
 
 function ProductList() {
-  console.log("product list mounted")
   const [isSearching, setIsSearching] = useState(false);
   const [searchProduct, setSearchProduct] = useState("");
-  // const [sortOrder, setSortOrder] = useState('asc');
 
   const dispatch = useDispatch();
 	const {
@@ -20,7 +18,6 @@ function ProductList() {
 		sortedItems,
     sortOrder,
 	} = useSelector(store => store.shoppingCart);
-  console.log({products})
 
   const searchProducts = (e) => {
 	const searchedProduct = e.target.value.toLowerCase();

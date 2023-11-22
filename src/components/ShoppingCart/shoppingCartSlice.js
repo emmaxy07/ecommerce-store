@@ -310,7 +310,6 @@ export function setLogin(username, password) {
         });
   
         const loginData = await loginRes.json();
-  
         if (loginRes.ok) {
           // Dispatch the "login" action for user authentication with username, password, and token
           dispatch({
@@ -319,10 +318,10 @@ export function setLogin(username, password) {
           });
   
           // Save the token in local storage
-          localStorage.setItem('token', loginData.token);
-          localStorage.setItem('isLoggedIn', true);
-          localStorage.setItem('userImage', loginData.image);
-          localStorage.setItem('username', loginData.username);
+          sessionStorage.setItem('token', loginData.token);
+          sessionStorage.setItem('isLoggedIn', true);
+          sessionStorage.setItem('userImage', loginData.image);
+          sessionStorage.setItem('username', loginData.username);
         } else {
           // Handle login error
           dispatch({
@@ -371,15 +370,15 @@ export function setLogin(username, password) {
     return function (dispatch) {
       try {
 
-        const token = localStorage.getItem('token');
-        const isLoggedIn = localStorage.getItem('isLoggedIn');
+        const token = sessionStorage.getItem('token');
+        const isLoggedIn = sessionStorage.getItem('isLoggedIn');
             // Check if a token exists in local storage
-        const userImage = localStorage.getItem('userImage');
-        const username = localStorage.getItem('username');
+        const userImage = sessionStorage.getItem('userImage');
+        const username = sessionStorage.getItem('username');
 
   
         if (isLoggedIn) {
-            // const userImage = localStorage.getItem('userImage');
+            // const userImage = sessionStorage.getItem('userImage');
           // If a token exists, set the login status in Redux
           dispatch({
             type: "login",

@@ -27,7 +27,7 @@ const App = () => {
   } = useSelector(store => store.shoppingCart);
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // Check if logged in
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true'; // Check if logged in
 
     // Assuming you have an action to set the initial login status in Redux
     dispatch(setInitialLoginStatus(isLoggedIn));
